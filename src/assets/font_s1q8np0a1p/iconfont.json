@@ -1,0 +1,72 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "283049",
+      "name": "返回顶部",
+      "font_class": "huidingbu",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "3285293",
+      "name": "店铺",
+      "font_class": "dianpu",
+      "unicode": "e74a",
+      "unicode_decimal": 59210
+    },
+    {
+      "icon_id": "5816382",
+      "name": "客服",
+      "font_class": "kefu",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "6696598",
+      "name": "购物车",
+      "font_class": "gouwuche1",
+      "unicode": "e504",
+      "unicode_decimal": 58628
+    },
+    {
+      "icon_id": "11265596",
+      "name": "收 藏",
+      "font_class": "wuxiaoxing-kong",
+      "unicode": "e505",
+      "unicode_decimal": 58629
+    },
+    {
+      "icon_id": "15484451",
+      "name": "首页-选中",
+      "font_class": "shouye",
+      "unicode": "e502",
+      "unicode_decimal": 58626
+    },
+    {
+      "icon_id": "16609345",
+      "name": "箭头",
+      "font_class": "jiantou",
+      "unicode": "e7f8",
+      "unicode_decimal": 59384
+    },
+    {
+      "icon_id": "21178810",
+      "name": "个人中心 - 中",
+      "font_class": "gerenzhongxin-zhong",
+      "unicode": "e516",
+      "unicode_decimal": 58646
+    },
+    {
+      "icon_id": "21240017",
+      "name": "分类",
+      "font_class": "category01",
+      "unicode": "e503",
+      "unicode_decimal": 58627
+    }
+  ]
+}
