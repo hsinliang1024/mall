@@ -1,7 +1,7 @@
 <!--  -->
 <template>
-  <div class="goodsListItem">
-      <img :src="goodsItem.show.img" alt="">
+  <div class="goodsListItem" @click="itemClick">
+      <img v-lazy="showImage" alt="">
       <div class="title">{{goodsItem.title}}</div>
       <span class="price">￥{{goodsItem.price}}</span>
       <span class="cfav">{{goodsItem.cfav}}人收货</span>
@@ -17,8 +17,17 @@ export default {
              return {}
          }
      }
- }
-
+ },
+ methods:{
+    itemClick(){
+        this.$router.push('/detail/' + this.goodsItem.iid)
+    }
+ },
+computed:{
+    showImage(){
+        return this.goodsItem.image || this.goodsItem.show.img
+    }
+}
 }
 
 </script>

@@ -24,6 +24,7 @@ export default {
     height: 44px;
     text-align: center;
     width: 100%;
+    z-index: 99;
 }
 .left,.right{
     width: 60px;

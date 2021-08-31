@@ -27,9 +27,7 @@ export default {
       pullUpLoad: true,
       probeType:3,
       observeDOM:true,
-      click:true,
-      scrollY:true,
-      freeScroll:true
+      click:true
     })
     this.scroll.on('scroll',(position)=>{
       this.$emit('contentScroll',position)

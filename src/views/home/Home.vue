@@ -4,14 +4,22 @@
     <nav-bar class="home-nav">
       <div slot="center">购物街</div>
     </nav-bar>
-
+ <tab-control
+      :titles="['流行', '新款', '精选']"
+      class="tab-control clonetab"
+      @tabclick="tabclick"
+      ref="tabcontrol1"
+      v-show="isFiexd"
+      />
    <scroll class="scroll-content" ref="scroll" @contentScroll="contentScroll" @pullingUp="loadMore">
-     <swiper :banners="banners" class="banners" />
+     <swiper :banners="banners" class="banners" @swiperImageLoad="swiperImageLoad"/>
     <recommend-item :recommends="recommends" />
     <tab-control
       :titles="['流行', '新款', '精选']"
       class="tab-control"
-      @tabclick="tabclick"/>
+      @tabclick="tabclick"
+      ref="tabcontrol2"
+      />
     <good-list :goods="goods[currentType].list" />
    </scroll>
    
@@ -41,7 +49,10 @@ export default {
         'sell': { page: 0, list: [] },
       },
       currentType: "pop",
-      isbackto:false
+      isbackto:false,
+      tabOffsettop:0,
+      isFiexd:false,
+      saveY:0
     };
   },
   components: {
@@ -62,6 +73,9 @@ export default {
     this.getHomeGoods("new");
     this.getHomeGoods("sell");
   },
+  computed:{
+     
+  },
   methods: {
     /**
      * 监听事件点击
@@ -79,6 +93,8 @@ export default {
           this.currentType = 'sell';
           break;
       }
+      this.$refs.tabcontrol1.activeIndex = index
+      this.$refs.tabcontrol2.activeIndex = index
     },
      //返回顶部
     backClick(){
@@ -86,7 +102,10 @@ export default {
     },
     //内容滚动
     contentScroll(position){
+      //1.判断返回顶部是否显示
       this.isbackto = -position.y > 1000
+      //2.判断tabcontrol是否吸顶
+      this.isFiexd = -position.y >this.tabOffsettop
     },
 
     /**
@@ -111,40 +130,47 @@ export default {
     //加载更多
     loadMore(){
       this.getHomeGoods(this.currentType)
+    },
+    //轮播图加载
+    swiperImageLoad(){
+      this.tabOffsettop = this.$refs.tabcontrol2.$el.offsetTop
     }
   },
+  activated(){
+      setTimeout(()=>{
+      this.$refs.scroll.scrollTo(0,this.saveY,0)
+      },200)
+    },
+    deactivated(){
+      this.saveY = this.$refs.scroll.scroll.y
+    },
 };
 </script>
 <style scoped>
 #home{
   height: 100vh;
-  /* position: relative; */
 }
 .home-nav {
   background-color: orange;
   color: #fff;
-  position: fixed;
-  top: 0;
-  z-index: 9;
+  z-index: 99; 
 }
-.banners {
-  margin-top: 44px;
-}
-
 .tab-control {
-  position: sticky;
-  top: 44px;
   background-color: #fff;
 }
 .scroll-content{
-  /* height: 300px; */
-  /* position: absolute;
+  position: absolute;
   top: 44px;
   bottom: 49px;
   left: 0;
-  right: 0; */
-  height: calc(100% - 93px);
+  right: 0;
   overflow: hidden;
+}
+.clonetab{
+  position: relative;
+  z-index: 9;
+}
+.banners{
   margin-top: 44px;
 }
 </style>
